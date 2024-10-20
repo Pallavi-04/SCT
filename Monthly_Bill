@@ -1,0 +1,53 @@
+-- CREATE TABLE MonthlyBill (
+--     bill_id NUMBER(10, 0) NOT NULL,
+--     consumer_id NUMBER(13, 0) NOT NULL,
+--     month VARCHAR2(20) NOT NULL,
+--     year NUMBER(4, 0) NOT NULL,
+--     amount NUMBER(10, 2) NOT NULL,
+--     status VARCHAR2(15) NOT NULL,
+--     PRIMARY KEY (bill_id),
+--     FOREIGN KEY (consumer_id) REFERENCES Customer (consumer_id)
+-- );
+
+DESC Customer;
+DESC CustomerBill;
+DESC MonthlyBill;
+
+/*
+INSERT INTO MonthlyBill (bill_id, consumer_id, month, year, amount, status) 
+VALUES (10110, 1000000000001, 'June', 2024, 150.00, 'Unpaid');
+
+INSERT INTO MonthlyBill (bill_id, consumer_id, month, year, amount, status) 
+VALUES (10111, 1000000000002, 'June', 2024, 200.00, 'Paid');
+
+INSERT INTO MonthlyBill (bill_id, consumer_id, month, year, amount, status) 
+VALUES (10112, 1000000000003, 'June', 2024, 250.00, 'Unpaid');
+
+INSERT INTO MonthlyBill (bill_id, consumer_id, month, year, amount, status) 
+VALUES (10113, 1000000000003, 'June', 2024, 300.00, 'Paid');
+
+INSERT INTO MonthlyBill (bill_id, consumer_id, month, year, amount, status) 
+VALUES (10114, 1000000000004, 'June', 2024, 350.00, 'Unpaid');
+
+INSERT INTO MonthlyBill (bill_id, consumer_id, month, year, amount, status) 
+VALUES (10115, 1000000000005, 'June', 2024, 180.00, 'Paid');
+
+INSERT INTO MonthlyBill (bill_id, consumer_id, month, year, amount, status) 
+VALUES (10116, 1000000000006, 'June', 2024, 120.00, 'Unpaid');
+
+INSERT INTO MonthlyBill (bill_id, consumer_id, month, year, amount, status) 
+VALUES (10117, 1000000000007, 'June', 2024, 170.00, 'Paid');
+
+INSERT INTO MonthlyBill (bill_id, consumer_id, month, year, amount, status) 
+VALUES (10118, 1000000000008, 'June', 2024, 210.00, 'Unpaid');
+
+INSERT INTO MonthlyBill (bill_id, consumer_id, month, year, amount, status) 
+VALUES (10119, 1000000000009, 'June', 2024, 190.00, 'Unpaid');
+
+INSERT INTO MonthlyBill (bill_id, consumer_id, month, year, amount, status) 
+VALUES (10120, 1000000000010, 'June', 2024, 300.00, 'Paid');
+*/
+SELECT a.consumer_id, a.consumer_name from CustomerBill a 
+INNER JOIN 
+MonthlyBill b ON a.consumer_Id = b.consumer_id
+WHERE b.status = 'Unpaid';
