@@ -1,0 +1,166 @@
+/*CREATE TABLE Customer 
+(
+    consumer_id NUMBER(13) NOT NULL PRIMARY KEY,	
+    customer_name VARCHAR2(50) NOT NULL,	
+    email VARCHAR2(50) NOT NULL,
+    mobile_number VARCHAR2(15) NOT NULL,
+    user_id VARCHAR2(20) NOT NULL,
+    password VARCHAR2(30) NOT NULL,
+    confirm_password VARCHAR2(30) NOT NULL,
+    status VARCHAR2(8) NOT NULL 
+);
+*/
+
+-- Since Oracle doesn't have a built-in ENUM type (like MySQL does), 
+-- you'll define a VARCHAR2 column with a CHECK constraint to ensure that only the values 'Active' or 'Inactive' can be inserted.
+
+/*
+ALTER TABLE Customer 
+ADD CONSTRAINT chk_status_1 CHECK (status IN ('Active', 'Inactive'));
+*/
+--Inline column definition without constraints: For the Status column, I have removed the inline CHECK constraint.
+--Table-level CHECK constraint: The CHECK constraint is now defined after the table is created using ALTER TABLE. This is the correct way to handle constraints that refer to specific column values in Oracle.
+
+-- Inserting the Records 
+/*
+INSERT INTO Customer VALUES 
+    (1000000000001, 'John Doe', 'john@example.com', '9988776651', 'john123', 'John@123', 'John@123', 'Active');
+
+INSERT INTO Customer VALUES 
+    (1000000000002, 'Jane Smith', 'jane@example.com', '9988776652', 'jane123', 'Jane@123', 'Jane@123', 'Active');
+
+INSERT INTO Customer VALUES 
+    (1000000000003, 'Mike Brown', 'Mike@example.com', '9988776653', 'mike123', 'Mike@123', 'Mike@123', 'Active');
+
+INSERT INTO Customer VALUES 
+    (1000000000004, 'Aditya Shukla', 'Adi@example.com', '9988776654', 'adi123', 'Adi@123', 'Adi@123', 'Active');
+
+INSERT INTO Customer VALUES 
+    (1000000000005, 'David Lee', 'David@example.com', '9988776655', 'david123', 'David@123', 'David@123', 'Active');
+
+INSERT INTO Customer (CONSUMER_ID, CUSTOMER_NAME, EMAIL, MOBILE_NUMBER, USER_ID, PASSWORD, CONFIRM_PASSWORD, STATUS)
+VALUES (1000000000006, 'Uma Pandey', 'Uma@example.com', '9988776656', 'uma123', 'Uma@123', 'Uma@123', 'Inactive');
+
+
+INSERT INTO Customer (CONSUMER_ID, CUSTOMER_NAME, EMAIL, MOBILE_NUMBER, USER_ID, PASSWORD, CONFIRM_PASSWORD, STATUS)
+VALUES (1000000000007, 'Pooja Sharma', 'Pooja@example.com', '9988776657', 'pooja123', 'Pooja@123', 'Pooja@123', 'Inactive');
+
+
+INSERT INTO Customer (CONSUMER_ID, CUSTOMER_NAME, EMAIL, MOBILE_NUMBER, USER_ID, PASSWORD, CONFIRM_PASSWORD, STATUS)
+VALUES (1000000000008, 'Sony Prajapati', 'Sony@example.com', '9988776658', 'sony123', 'Sony@123', 'Sony@123', 'Active');
+
+
+INSERT INTO Customer (CONSUMER_ID, CUSTOMER_NAME, EMAIL, MOBILE_NUMBER, USER_ID, PASSWORD, CONFIRM_PASSWORD, STATUS)
+VALUES (1000000000009, 'Mia Johnson', 'Mia@example.com', '9988776659', 'mia123', 'Mia@123', 'Mia@123', 'Inactive');
+
+
+INSERT INTO Customer (CONSUMER_ID, CUSTOMER_NAME, EMAIL, MOBILE_NUMBER, USER_ID, PASSWORD, CONFIRM_PASSWORD, STATUS)
+VALUES (1000000000010, 'Toshni', 'Toshni@example.com', '9988776660', 'tosh123', 'Toshni@123', 'Toshni@123', 'Inactive');
+
+*/
+
+
+
+
+
+--- US006 -- Add Column 
+/*
+ALTER TABLE Customer 
+ADD (
+    title VARCHAR2(20),
+    bill_number NUMBER(5)
+);
+*/
+
+-- DESC Customer;
+
+
+
+
+--- US007 -- Retrieve Customer Details 
+
+/*
+SELECT 
+    consumer_id as CustomerID, 
+    customer_name as consumer_name, 
+    email as Email 
+FROM 
+    Customer
+WHERE  
+    customer_name LIKE '%a' 
+ORDER BY 
+    customer_name DESC;
+*/
+
+
+
+
+--- US008 --  Calculating Average bill_amount per city 
+/*
+CREATE TABLE CustomerBill (
+    consumer_id NUMBER(13) PRIMARY KEY,
+    consumer_name VARCHAR2(20),
+    address VARCHAR2(50),
+    bill_amount NUMBER(10),
+    FOREIGN KEY (consumer_id) REFERENCES Customer(consumer_id)
+);
+*/
+
+
+-- ALTER TABLE CustomerBill ADD city VARCHAR2(20);
+
+-- DESC CustomerBill;
+/*
+INSERT INTO CustomerBill (consumer_id, consumer_name, address, city, bill_amount) VALUES 
+    (1000000000001, 'John Doe', '123 Elm St', 'New York', 150);
+
+INSERT INTO CustomerBill (consumer_id, consumer_name, address, city, bill_amount) VALUES     
+    (1000000000002, 'Jane Smith', '456 Oak St', 'Los Angeles', 200);
+
+INSERT INTO CustomerBill (consumer_id, consumer_name, address, city, bill_amount) VALUES 
+    (1000000000003, 'Mike Brown', '789 Pine St', 'New York', 250);
+
+INSERT INTO CustomerBill (consumer_id, consumer_name, address, city, bill_amount) VALUES 
+    (1000000000004, 'Aditya Shukla', '101 Maple St', 'Chicago', 180);
+
+INSERT INTO CustomerBill (consumer_id, consumer_name, address, city, bill_amount) VALUES 
+    (1000000000005, 'David Lee', '202 Birch St', 'Los Angeles', 220);
+
+INSERT INTO CustomerBill (consumer_id, consumer_name, address, city, bill_amount) VALUES 
+    (1000000000006, 'Uma Pandey', '303 Rehala', 'Ranchi', 175);
+
+INSERT INTO CustomerBill (consumer_id, consumer_name, address, city, bill_amount) VALUES 
+    (1000000000007, 'Pooja Sharma', '404 Wright Town', 'Jabalpur', 300);
+
+INSERT INTO CustomerBill (consumer_id, consumer_name, address, city, bill_amount) VALUES 
+    (1000000000008, 'Sony Prajapati', '505 Trivandrum Central', 'Trivandrum', 160);
+
+INSERT INTO CustomerBill (consumer_id, consumer_name, address, city, bill_amount) VALUES 
+    (1000000000009, 'Mia Johnson', '606 Aspen St', 'Houston', 190);
+
+INSERT INTO CustomerBill (consumer_id, consumer_name, address, city, bill_amount) VALUES 
+    (1000000000010, 'Toshni', '707 Gurugram', 'Gurugram', 210);
+*/
+
+-- SELECT consumer_id FROM Customer;
+-- SELECT * FROM CustomerBill;
+
+
+
+------- Query to Calculate Average Bill Per City
+
+SELECT 
+    city, 
+    AVG(bill_amount) AS AverageBill
+FROM 
+	CustomerBill
+GROUP BY 
+	City
+ORDER BY 
+	AverageBill DESC;
+
+
+
+-- UPDATE CustomerBill
+-- SET city = 'Jabalpur' WHERE consumer_id = 1000000000010;
+SELECT consumer_id, city from CustomerBill;
